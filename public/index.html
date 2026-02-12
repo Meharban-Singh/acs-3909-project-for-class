@@ -1,68 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>
-        Meh's note taking app
-    </title>
-    <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Taking App</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
+        <!-- Login Section -->
         <div id="loginSection" class="section active">
-
             <div class="card">
                 <h1>Note Taking App</h1>
-
+                
+                <!-- HTML Form for login -->
                 <form id="loginForm" class="form">
                     <div class="form-group">
                         <label for="username">Username</label>
-
                         <input 
                             type="text" 
                             id="username" 
-                            name="username"
-                            placeholder="Enter your username.."
+                            name="username" 
+                            placeholder="Enter username (3-20 characters)"
                             required
                             minlength="3"
                             maxlength="20"
-                        />
-                        <small>Only letters, numbers and underdorscores allowed</small>
+                            pattern="[a-zA-Z0-9_]+"
+                        >
+                        <small>Only letters, numbers, and underscores allowed</small>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Login/Signup</button>
+                    <button type="submit" class="btn btn-primary">Login / Sign Up</button>
                 </form>
+                <div id="loginError" class="error-message"></div>
             </div>
-            <div id="loginError" class="error-message"></div>
         </div>
 
-        <div id="notesSection" class="section active">
+        <!-- Notes Section -->
+        <div id="notesSection" class="section">
             <div class="header">
                 <div>
                     <h1>My Notes</h1>
-                    <p class="user-info">Logged in as <strong id="currentUser"></strong></p>
+                    <p class="user-info">Logged in as: <strong id="currentUser"></strong></p>
                 </div>
                 <button id="logoutBtn" class="btn btn-secondary">Logout</button>
             </div>
+
+            <!-- HTML Form for creating notes -->
+            <div class="card">
+                <h2>Create New Note</h2>
+                <form id="noteForm" class="form">
+                    <div class="form-group">
+                        <textarea 
+                            id="noteContent" 
+                            name="content" 
+                            rows="4" 
+                            placeholder="Write here"
+                            required
+                            maxlength="5000"
+                        ></textarea>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" id="insertWeatherBtn" class="btn btn-secondary">Insert Current Weather</button>
+                        <button type="submit" class="btn btn-primary">Add Note</button>
+                    </div>
+                </form>
+                <div id="noteError" class="error-message"></div>
+            </div>
+
+            <!-- Notes List -->
+            <div id="notesList" class="notes-list">
+                <!-- Notes will be dynamically added here -->
+            </div>
         </div>
 
-        <div class="card">
-            <h2>Create New note</h2>
-            <form id="noteForm" class="form">
-                <div class="form-group">
-                    <textarea 
-                        name="content" 
-                        id="noteContent" 
-                        row="4" 
-                        placeholder="Content of the note"
-                        required>
-                    </textarea>
-                </div>
-                <div class="form-group">
-                    <button type="button" id="insertWeatherBtn" class="btn btn-secondary">Insert Weather Button</button>
-                    <button type="submit" class="btn btn-primary">Add Note</button>
-                </div>
-            </form>
+        <!-- Edit Modal -->
+        <div id="editModal" class="modal">
+            <div class="modal-content">
+                <h2>Edit Note</h2>
+                <!-- HTML Form for editing notes -->
+                <form id="editForm" class="form">
+                    <input type="hidden" id="editNoteId">
+                    <div class="form-group">
+                        <label for="editNoteContent">Note Content</label>
+                        <textarea 
+                            id="editNoteContent" 
+                            name="content" 
+                            rows="6" 
+                            required
+                            maxlength="5000"
+                        ></textarea>
+                    </div>
+                    <div class="modal-actions">
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                        <button type="button" id="cancelEdit" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 
