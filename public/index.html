@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Meh's note taking app
+    </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div id="loginSection" class="section active">
+
+            <div class="card">
+                <h1>Note Taking App</h1>
+
+                <form id="loginForm" class="form">
+                    <div class="form-group">
+                        <label for="username">Username</label>
+
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username"
+                            placeholder="Enter your username.."
+                            required
+                            minlength="3"
+                            maxlength="20"
+                        />
+                        <small>Only letters, numbers and underdorscores allowed</small>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Login/Signup</button>
+                </form>
+            </div>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
+</body>
+</html>
